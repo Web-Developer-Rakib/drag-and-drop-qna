@@ -17,8 +17,7 @@ const DraggableAnswer = ({ answer }: any) => {
       style={{
         opacity,
         cursor: "move",
-        border: "1px solid black",
-        padding: "8px",
+        gap: 5,
       }}
     >
       {answer}

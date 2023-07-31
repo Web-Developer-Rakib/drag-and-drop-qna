@@ -1,32 +1,39 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import DraggableAnswer from "../../components/DraggableAnswer/DraggableAnswer";
 import DropZone from "../../components/DropZone/DropZone";
+import { questions } from "../../utils/constants";
+import "./Main.css";
 
 const QuestionAnswerApp = () => {
-  const [question, setQuestion] = useState(
-    "Fill in the blank: The capital of France is ___"
-  );
-  const [answers, setAnswers] = useState(["Paris", "London", "Berlin"]);
   const [isCorrect, setIsCorrect] = useState(false);
-  const [droppedAnswer, setDropAnswer] = useState("___");
+  const [droppedAnswers, setDroppedAnswers] = useState(
+    questions.map(() => "___")
+  );
 
-  const handleDrop = (answer) => {
-    const correctAnswer = "Paris";
+  const handleDrop = (answer, questionIndex, correctAnswer) => {
     setIsCorrect(answer === correctAnswer);
-    setDropAnswer(answer);
+    const updatedAnswers = [...droppedAnswers];
+    updatedAnswers[questionIndex] = answer;
+    setDroppedAnswers(updatedAnswers);
   };
-  const splitQuestion = question.split("___");
-  const beforeBlank = splitQuestion[0];
-  const afterBlank = splitQuestion[1];
+  const splitQuestions = questions.map((q) => q.question.split("___"));
   return (
-    <div className="question-answer-app">
-      <div className="question">
-        <span>{beforeBlank}</span>
-        <DropZone onDrop={handleDrop}>{droppedAnswer}</DropZone>
-        <span>{afterBlank}</span>
-      </div>
-      {answers.map((answer, index) => (
-        <DraggableAnswer key={index} answer={answer} />
+    <div>
+      {questions.map((q, index) => (
+        <React.Fragment key={index}>
+          {q.answers.map((answer, answerIndex) => (
+            <DraggableAnswer key={answerIndex} answer={answer} />
+          ))}
+          <div className="question">
+            <span>{splitQuestions[index][0]}</span>
+            <DropZone
+              onDrop={(answer) => handleDrop(answer, index, q.correctAnswer)}
+            >
+              {droppedAnswers[index]}
+            </DropZone>
+            <span>{splitQuestions[index][1]}</span>
+          </div>
+        </React.Fragment>
       ))}
       {isCorrect ? (
         <div className="feedback-correct">Correct!</div>

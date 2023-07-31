@@ -11,7 +11,7 @@ const QuestionAnswerApp = () => {
   const [droppedAnswer, setDropAnswer] = useState("___");
 
   const handleDrop = (answer) => {
-    const correctAnswer = "Paris"; // Replace with the actual correct answer
+    const correctAnswer = "Paris";
     setIsCorrect(answer === correctAnswer);
     setDropAnswer(answer);
   };

@@ -1,6 +1,12 @@
+import { ReactNode } from "react";
 import { useDrop } from "react-dnd";
-
-const DropZone = ({ onDrop, children }: any) => {
+interface IProps {
+  onDrop: (answer: string) => void;
+  children: ReactNode;
+  isCorrect: boolean;
+  droppedAnswers: string;
+}
+const DropZone = ({ onDrop, children, isCorrect, droppedAnswers }: IProps) => {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: "ANSWER",
     drop: (item: any) => {
@@ -12,13 +18,19 @@ const DropZone = ({ onDrop, children }: any) => {
     }),
   });
 
-  const backgroundColor = isOver && canDrop ? "lightgreen" : "transparent";
-
   return (
     <span
       ref={drop}
+      className={droppedAnswers === "___" ? "" : "answer"}
       style={{
-        backgroundColor,
+        backgroundColor:
+          isOver && canDrop
+            ? "lightgreen"
+            : droppedAnswers === "___"
+            ? "transparent"
+            : isCorrect
+            ? "#55ed3e"
+            : "#ed3e3e",
       }}
     >
       {children}

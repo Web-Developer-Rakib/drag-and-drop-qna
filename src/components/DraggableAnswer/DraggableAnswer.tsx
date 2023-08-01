@@ -1,6 +1,12 @@
 import { useDrag } from "react-dnd";
 import "./DraggableAnswer.css";
-const DraggableAnswer = ({ answer }: any) => {
+
+interface IProps {
+  answer: string;
+  bgColor: string;
+}
+const DraggableAnswer = ({ answer, bgColor }: IProps) => {
+  console.log(bgColor);
   const [{ isDragging }, drag] = useDrag({
     type: "ANSWER",
     item: { answer },
@@ -17,7 +23,7 @@ const DraggableAnswer = ({ answer }: any) => {
       style={{
         opacity,
         cursor: "move",
-        gap: 5,
+        backgroundColor: bgColor,
       }}
       className="answer"
     >

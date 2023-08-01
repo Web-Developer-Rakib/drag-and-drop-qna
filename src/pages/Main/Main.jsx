@@ -5,13 +5,17 @@ import { questions } from "../../utils/constants";
 import "./Main.css";
 
 const QuestionAnswerApp = () => {
-  const [isCorrect, setIsCorrect] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(questions.map(() => false));
   const [droppedAnswers, setDroppedAnswers] = useState(
     questions.map(() => "___")
   );
 
   const handleDrop = (answer, questionIndex, correctAnswer) => {
-    setIsCorrect(answer === correctAnswer);
+    setIsCorrect((prevIsCorrect) => {
+      const updatedIsCorrect = [...prevIsCorrect];
+      updatedIsCorrect[questionIndex] = answer === correctAnswer;
+      return updatedIsCorrect;
+    });
     const updatedAnswers = [...droppedAnswers];
     updatedAnswers[questionIndex] = answer;
     setDroppedAnswers(updatedAnswers);
@@ -24,13 +28,19 @@ const QuestionAnswerApp = () => {
         <div className="qna-div" key={index}>
           <div className="answers">
             {q.answers.map((answer, answerIndex) => (
-              <DraggableAnswer key={answerIndex} answer={answer} />
+              <DraggableAnswer
+                key={answerIndex}
+                answer={answer.answer}
+                bgColor={answer.color}
+              />
             ))}
           </div>
           <div className="question">
             <span>{splitQuestions[index][0]}</span>
             <DropZone
               onDrop={(answer) => handleDrop(answer, index, q.correctAnswer)}
+              isCorrect={isCorrect[index]}
+              droppedAnswers={droppedAnswers[index]}
             >
               {droppedAnswers[index]}
             </DropZone>

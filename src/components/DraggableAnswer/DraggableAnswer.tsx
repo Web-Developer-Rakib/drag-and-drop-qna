@@ -1,5 +1,5 @@
 import { useDrag } from "react-dnd";
-
+import "./DraggableAnswer.css";
 const DraggableAnswer = ({ answer }: any) => {
   const [{ isDragging }, drag] = useDrag({
     type: "ANSWER",
@@ -19,6 +19,7 @@ const DraggableAnswer = ({ answer }: any) => {
         cursor: "move",
         gap: 5,
       }}
+      className="answer"
     >
       {answer}
     </div>

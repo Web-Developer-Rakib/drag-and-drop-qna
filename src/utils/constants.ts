@@ -16,13 +16,13 @@ export const questions: IQuestions[] = [
     id: 2,
     question: "I am a ___",
     answers: ["Doctor", "Programmer", "Chef", "Lawyer", "Accountant"],
-    correctAnswer: "Rakib",
+    correctAnswer: "Programmer",
   },
   {
     id: 3,
     question: "I am from ___",
     answers: ["India", "Bangladesh", "Canada", "United States", "Nepal"],
-    correctAnswer: "Rakib",
+    correctAnswer: "Bangladesh",
   },
   {
     id: 4,
@@ -32,7 +32,7 @@ export const questions: IQuestions[] = [
   },
   {
     id: 5,
-    question: "I love to play ___ years old",
+    question: "I love to play ___",
     answers: ["Cricket", "Football", "Musical instrument", "Hockey", "Tennis"],
     correctAnswer: "Musical instrument",
   },

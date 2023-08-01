@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import DraggableAnswer from "../../components/DraggableAnswer/DraggableAnswer";
 import DropZone from "../../components/DropZone/DropZone";
 import { questions } from "../../utils/constants";
@@ -19,11 +19,14 @@ const QuestionAnswerApp = () => {
   const splitQuestions = questions.map((q) => q.question.split("___"));
   return (
     <div>
+      <h1>Drag and drop correct answer</h1>
       {questions.map((q, index) => (
-        <React.Fragment key={index}>
-          {q.answers.map((answer, answerIndex) => (
-            <DraggableAnswer key={answerIndex} answer={answer} />
-          ))}
+        <div className="qna-div" key={index}>
+          <div className="answers">
+            {q.answers.map((answer, answerIndex) => (
+              <DraggableAnswer key={answerIndex} answer={answer} />
+            ))}
+          </div>
           <div className="question">
             <span>{splitQuestions[index][0]}</span>
             <DropZone
@@ -33,13 +36,8 @@ const QuestionAnswerApp = () => {
             </DropZone>
             <span>{splitQuestions[index][1]}</span>
           </div>
-        </React.Fragment>
+        </div>
       ))}
-      {isCorrect ? (
-        <div className="feedback-correct">Correct!</div>
-      ) : (
-        <div className="feedback-incorrect">Incorrect!</div>
-      )}
     </div>
   );
 };

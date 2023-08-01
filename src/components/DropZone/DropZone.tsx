@@ -1,4 +1,5 @@
 import { ReactNode, useEffect, useState } from "react";
+import ConfettiExplosion from "react-confetti-explosion";
 import { useDrop } from "react-dnd";
 import "./DropZone.css";
 interface IProps {
@@ -53,6 +54,7 @@ const DropZone = ({ onDrop, children, isCorrect, droppedAnswers }: IProps) => {
       }}
     >
       {children}
+      {isCorrect && <ConfettiExplosion />}
     </div>
   );
 };

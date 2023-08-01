@@ -1,6 +1,7 @@
 import { useState } from "react";
 import DraggableAnswer from "../../components/DraggableAnswer/DraggableAnswer";
 import DropZone from "../../components/DropZone/DropZone";
+import Footer from "../../components/Footer/Footer";
 import { questions } from "../../utils/constants";
 import "./Main.css";
 
@@ -52,6 +53,7 @@ const QuestionAnswerApp = () => {
           </div>
         </div>
       ))}
+      <Footer />
     </div>
   );
 };

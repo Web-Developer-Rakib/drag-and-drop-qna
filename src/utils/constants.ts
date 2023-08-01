@@ -23,8 +23,8 @@ export const questions: IQuestions[] = [
     question: "I am a ___",
     answers: [
       { answer: "Doctor", color: "#FFD700" },
-      { answer: "Programmer", color: "#00CED1" },
-      { answer: "Chef", color: "#FF8A14" },
+      { answer: "Chef", color: "#00CED1" },
+      { answer: "Programmer", color: "#FF8A14" },
       { answer: "Lawyer", color: "#FF14EF" },
       { answer: "Accountant", color: "#FFA07A" },
     ],
@@ -60,8 +60,8 @@ export const questions: IQuestions[] = [
     answers: [
       { answer: "Cricket", color: "#FFD700" },
       { answer: "Football", color: "#00CED1" },
-      { answer: "Musical instrument", color: "#FF8A14" },
-      { answer: "Hockey", color: "#FF14EF" },
+      { answer: "Hockey", color: "#FF8A14" },
+      { answer: "Musical instrument", color: "#FF14EF" },
       { answer: "Tennis", color: "#FFA07A" },
     ],
     correctAnswer: "Musical instrument",

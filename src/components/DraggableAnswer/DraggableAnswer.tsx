@@ -6,7 +6,6 @@ interface IProps {
   bgColor: string;
 }
 const DraggableAnswer = ({ answer, bgColor }: IProps) => {
-  console.log(bgColor);
   const [{ isDragging }, drag] = useDrag({
     type: "ANSWER",
     item: { answer },

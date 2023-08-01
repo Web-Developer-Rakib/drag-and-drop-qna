@@ -10,7 +10,11 @@ const QuestionAnswerApp = () => {
     questions.map(() => "___")
   );
 
-  const handleDrop = (answer, questionIndex, correctAnswer) => {
+  const handleDrop = (
+    answer: string,
+    questionIndex: number,
+    correctAnswer: string
+  ) => {
     setIsCorrect((prevIsCorrect) => {
       const updatedIsCorrect = [...prevIsCorrect];
       updatedIsCorrect[questionIndex] = answer === correctAnswer;
@@ -36,7 +40,7 @@ const QuestionAnswerApp = () => {
             ))}
           </div>
           <div className="question">
-            <span>{splitQuestions[index][0]}</span>
+            <div>{splitQuestions[index][0]}</div>
             <DropZone
               onDrop={(answer) => handleDrop(answer, index, q.correctAnswer)}
               isCorrect={isCorrect[index]}
@@ -44,7 +48,7 @@ const QuestionAnswerApp = () => {
             >
               {droppedAnswers[index]}
             </DropZone>
-            <span>{splitQuestions[index][1]}</span>
+            <div>{splitQuestions[index][1]}</div>
           </div>
         </div>
       ))}

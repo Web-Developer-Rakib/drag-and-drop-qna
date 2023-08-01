@@ -1,6 +1,8 @@
 import { ReactNode, useEffect, useState } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
 import { useDrop } from "react-dnd";
+import errorSound from "../../sounds/error.wav";
+import successSound from "../../sounds/success.wav";
 import "./DropZone.css";
 interface IProps {
   onDrop: (answer: string) => void;
@@ -20,12 +22,20 @@ const DropZone = ({ onDrop, children, isCorrect, droppedAnswers }: IProps) => {
       canDrop: monitor.canDrop(),
     }),
   });
+  const playErrorSound = () => {
+    const audio = new Audio(errorSound);
+    audio.play();
+  };
+  const playSuccessSound = () => {
+    const audio = new Audio(successSound);
+    audio.play();
+  };
   useEffect(() => {
     // Check if isCorrect is false and droppedAnswers is not "___"
     if (!isCorrect && droppedAnswers !== "___") {
       // Update the newErrorAnswer state to trigger the error animation
       setErrorAnimation(true);
-
+      playErrorSound();
       // Set a timer to reset the newErrorAnswer state after the animation duration (you can adjust the duration accordingly)
       const animationDuration = 1000; // 1 second
       const timer = setTimeout(() => {
@@ -34,6 +44,8 @@ const DropZone = ({ onDrop, children, isCorrect, droppedAnswers }: IProps) => {
 
       // Clean up the timer when the component unmounts or when the effect runs again
       return () => clearTimeout(timer);
+    } else {
+      playSuccessSound();
     }
   }, [isCorrect, droppedAnswers]);
   return (
